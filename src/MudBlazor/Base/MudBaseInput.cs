@@ -281,14 +281,14 @@ namespace MudBlazor
         public bool AutoFocus { get; set; }
 
         /// <summary>
-        /// Disables automatic scroll when focusing with <see cref="AutoFocus"/>.
+        /// Whether <see cref="AutoFocus"/> should cause view to automatically scroll to this element.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  When <c>true</c>, <see cref="AutoFocus"/> will not cause the view to scroll to the focused component.
+        /// Defaults to <c>true</c>.  When <c>false</c>, <see cref="AutoFocus"/> will not cause the view to scroll to the focused component.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
-        public bool DisableAutoFocusScroll { get; set; }
+        public bool AutoFocusScroll { get; set; } = true;
 
         /// <summary>
         ///  A multiline input (textarea) will be shown, if set to more than one line.
@@ -705,7 +705,7 @@ namespace MudBlazor
             //Only focus automatically after the first render cycle!
             if (firstRender && AutoFocus)
             {
-                await FocusAsync(DisableAutoFocusScroll);
+                await FocusAsync(!AutoFocusScroll);
             }
 
             await base.OnAfterRenderAsync(firstRender);
