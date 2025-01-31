@@ -99,7 +99,8 @@ namespace MudBlazor
         /// <summary>
         /// Moves the cursor to the starting input component.
         /// </summary>
-        public ValueTask FocusStartAsync() => _elementReferenceStart.FocusAsync();
+        /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
+        public ValueTask FocusStartAsync(bool preventScroll = false) => _elementReferenceStart.FocusAsync(preventScroll);
 
         /// <summary>
         /// Selects the text in the starting input.
@@ -116,7 +117,8 @@ namespace MudBlazor
         /// <summary>
         /// Moves the cursor to the ending input component.
         /// </summary>
-        public ValueTask FocusEndAsync() => _elementReferenceEnd.FocusAsync();
+        /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
+        public ValueTask FocusEndAsync(bool preventScroll = false) => _elementReferenceEnd.FocusAsync(preventScroll);
 
         /// <summary>
         /// Selects the text in the ending input.
