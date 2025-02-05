@@ -190,7 +190,7 @@ namespace MudBlazor
         }
 
         /// <inheritdoc />
-        public override async ValueTask FocusAsync(bool preventScroll = false)
+        public override async ValueTask FocusAsync(bool preventScroll)
         {
             try
             {

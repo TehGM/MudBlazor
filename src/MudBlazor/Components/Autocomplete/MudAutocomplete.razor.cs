@@ -550,7 +550,7 @@ namespace MudBlazor
                     await _elementReference.SetText(optionText);
                 }
 
-                await FocusAsync();
+                await FocusAsync(false);
                 // We want focus with a closed popover
                 Open = false;
                 // And update
@@ -998,7 +998,7 @@ namespace MudBlazor
         {
             if (OnAdornmentClick.HasDelegate)
             {
-                await FocusAsync();
+                await FocusAsync(false);
                 await OnAdornmentClick.InvokeAsync();
             }
             else
@@ -1093,7 +1093,7 @@ namespace MudBlazor
         /// Sets focus to this Autocomplete.
         /// </summary>
         /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
-        public override ValueTask FocusAsync(bool preventScroll = false)
+        public override ValueTask FocusAsync(bool preventScroll)
         {
             return _elementReference.FocusAsync(preventScroll);
         }

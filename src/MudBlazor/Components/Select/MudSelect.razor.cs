@@ -895,7 +895,7 @@ namespace MudBlazor
             {
                 StateHasChanged();
                 await OnBlur.InvokeAsync(new FocusEventArgs());
-                _elementReference.FocusAsync().CatchAndLog(ignoreExceptions: true);
+                _elementReference.FocusAsync(false).CatchAndLog(ignoreExceptions: true);
                 StateHasChanged();
             }
 
@@ -969,7 +969,7 @@ namespace MudBlazor
         /// Sets the focus to this component.
         /// </summary>
         /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
-        public override ValueTask FocusAsync(bool preventScroll = false)
+        public override ValueTask FocusAsync(bool preventScroll)
         {
             return _elementReference.FocusAsync(preventScroll);
         }
@@ -1089,7 +1089,7 @@ namespace MudBlazor
             if (key.Length == 1 && key != " " && !(obj.CtrlKey || obj.ShiftKey || obj.AltKey || obj.MetaKey))
             {
                 await SelectFirstItem(key);
-                await FocusAsync();
+                await FocusAsync(false);
                 return;
             }
             switch (obj.Key)
@@ -1271,7 +1271,7 @@ namespace MudBlazor
             {
                 // when the menu is open we immediately get back the focus if we lose it (i.e. because of checkboxes in multi-select)
                 // otherwise we can't receive key strokes any longer
-                await FocusAsync();
+                await FocusAsync(false);
             }
         }
 

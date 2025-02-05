@@ -480,7 +480,12 @@ namespace MudBlazor
         /// </summary>
         /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
         /// <returns>A <see cref="ValueTask" /> object.</returns>
-        public virtual ValueTask FocusAsync(bool preventScroll = false) => ValueTask.CompletedTask;
+        public virtual ValueTask FocusAsync(bool preventScroll) => ValueTask.CompletedTask;
+        /// <summary>
+        /// Obtains focus for this button.
+        /// </summary>
+        [Obsolete("Use overload with preventScroll parameter.")]
+        public virtual ValueTask FocusAsync() => FocusAsync(false);
 
         /// <summary>
         /// When overridden, releases focus from this input.

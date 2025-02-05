@@ -341,7 +341,7 @@ namespace MudBlazor
         /// Sets the cursor to this input.
         /// </summary>
         /// <param name="preventScroll">If set to true, the view will not scroll to focused element.</param>
-        public override ValueTask FocusAsync(bool preventScroll = false)
+        public override ValueTask FocusAsync(bool preventScroll)
         {
             return _elementReference.FocusAsync(preventScroll);
         }

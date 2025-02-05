@@ -152,7 +152,7 @@ namespace MudBlazor
 
         /// <inheritdoc />
         [ExcludeFromCodeCoverage]
-        public override ValueTask FocusAsync(bool preventScroll = true)
+        public override ValueTask FocusAsync(bool preventScroll)
         {
             return _elementReference.FocusAsync(preventScroll);
         }
