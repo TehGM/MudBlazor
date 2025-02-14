@@ -998,7 +998,7 @@ namespace MudBlazor
         {
             if (OnAdornmentClick.HasDelegate)
             {
-                await FocusAsync(false);
+
                 await OnAdornmentClick.InvokeAsync();
             }
             else

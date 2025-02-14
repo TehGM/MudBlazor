@@ -3245,7 +3245,7 @@ namespace MudBlazor.UnitTests.Components
                 foreach (var column in dataGrid.Instance.RenderedColumns)
                 {
                     await column.HiddenState.SetValueAsync(true);
-                };
+                }
             });
 
             // cannot render the component again there can be only one mudpopoverprovider
@@ -3259,7 +3259,7 @@ namespace MudBlazor.UnitTests.Components
                 foreach (var column in dataGrid.Instance.RenderedColumns)
                 {
                     await column.HiddenState.SetValueAsync(false);
-                };
+                }
             });
 
             // 6 columns, 0 hidden (1 permanently hidden)
@@ -3357,6 +3357,17 @@ namespace MudBlazor.UnitTests.Components
 
             dataGrid.Render();
             dataGrid.FindAll("tbody tr").Count.Should().Be(0);
+        }
+
+        [Test]
+        public void DataGridColumnShowFilterIconsTest()
+        {
+            var comp = Context.RenderComponent<DataGridColumnShowFilterIconsTest>();
+            var dataGrid = comp.FindComponent<MudDataGrid<DataGridColumnShowFilterIconsTest.Model>>();
+
+            // Should have 5 columns, but only two with filter icons
+            dataGrid.FindComponents<Column<DataGridColumnShowFilterIconsTest.Model>>().Should().HaveCount(5);
+            dataGrid.FindAll(".column-filter-menu").Should().HaveCount(2);
         }
 
         [Test]

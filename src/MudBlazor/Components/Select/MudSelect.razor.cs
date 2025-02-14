@@ -1191,9 +1191,24 @@ namespace MudBlazor
         }
 
         /// <summary>
+        /// Clears all selections and resets validation
+        /// </summary>
+        /// <remarks>
+        /// To maintain validation errors (e.g. requried), use <see cref="ClearAsync"/>
+        /// </remarks>
+        protected override async Task ResetValueAsync()
+        {
+            await ClearAsync();
+            await base.ResetValueAsync();
+        }
+
+        /// <summary>
         /// Clears all selections.
         /// </summary>
-        public async Task Clear()
+        /// <remarks>
+        /// To reset validation errors (e.g. required), use <see cref="ResetValueAsync"/>
+        /// </remarks>
+        public async Task ClearAsync()
         {
             await SetValueAsync(default, false);
             await SetTextAsync(default, false);
@@ -1201,6 +1216,18 @@ namespace MudBlazor
             await BeginValidateAsync();
             StateHasChanged();
             await SelectedValuesChanged.InvokeAsync(_selectedValues);
+        }
+
+        /// <summary>
+        /// Clears all selections.
+        /// </summary>
+        /// <remarks>
+        /// To reset validation errors (e.g. required), use <see cref="ResetValueAsync"/>
+        /// </remarks>
+        [Obsolete("Use ClearAsync instead")]
+        public async Task Clear()
+        {
+            await ClearAsync();
         }
 
         private async Task SelectAllClickAsync()
@@ -1216,7 +1243,7 @@ namespace MudBlazor
             if (_selectAllChecked.Value)
                 await SelectAllItems();
             else
-                await Clear();
+                await ClearAsync();
         }
 
         private async Task SelectAllItems()
